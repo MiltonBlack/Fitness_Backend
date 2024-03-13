@@ -1,6 +1,6 @@
-import mongoose, {Schema} from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const authSchema = new Schema({
+const authSchema: mongoose.Schema = new Schema({
     isAdmin: { type: Boolean, default: false },
     email: { type: String, unique: true },
     fullName: { type: String, },
