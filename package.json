@@ -2,7 +2,7 @@
   "name": "fitness-backend",
   "version": "1.0.0",
   "description": "Fitness App Backend Service",
-  "main": "index.js",
+  "main": "dist/server.js",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "colors": "^1.4.0",
@@ -14,9 +14,10 @@
     "mongoose": "^8.2.1"
   },
   "scripts": {
-    "start": "node ./dist/server.js",
-    "dev": "nodemon server/server.ts",
-    "build": "tsc -p ."
+    "start": "npm run build && node ./dist/server.js",
+    "dev": "nodemon ./server/server.ts",
+    "build": "tsc -p .",
+    "server": "nodemon server.js"
   },
   "author": "Milton Black",
   "license": "ISC",
