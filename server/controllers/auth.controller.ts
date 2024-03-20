@@ -7,7 +7,7 @@ const secret = process.env.SECRET_KEY;
 
 export const Signup = async (req: Request, res: Response) => {
     const User = await new Auth({
-        fullName: req.body.fullName,
+        userName: req.body.userName,
         email: req.body.email,
         password: CryptoJS.AES.encrypt(req.body.password, secret as string).toString(),
     });
