@@ -3,13 +3,14 @@ import jwt from 'jsonwebtoken';
 import { Auth } from '../models/auth.model';
 import { Response, Request } from 'express'
 
-const secret = process.env.SECRET_KEY;
+const secret = process.env.SECRET_KEY || 'milton';
 
 export const Signup = async (req: Request, res: Response) => {
     const User = await new Auth({
         userName: req.body.userName,
         email: req.body.email,
         password: CryptoJS.AES.encrypt(req.body.password, secret as string).toString(),
+        gender: req.body.gender
     });
     try {
         const user = await User.save();
@@ -53,6 +54,32 @@ export const Login = async (req: Request, res: Response) => {
             success: false,
             message: "Internal Server Error",
             errors: {err},
+          })
+    }
+}
+
+export const getAllUsers = async (req: Request, res: Response) => {
+    try {
+        const User = await Auth.find();
+        return res.status(200).json(User);
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
+            errors: {error},
+          })
+    }
+}
+
+export const deleteUser = async (req: Request, res: Response) => {
+    try {
+        const user = await Auth.findByIdAndDelete({ _id: req.params.id });
+        return res.status(201).json(user);
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
+            errors: {error},
           })
     }
 }

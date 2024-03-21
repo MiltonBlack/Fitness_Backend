@@ -1,12 +1,19 @@
-import express from 'express';
+import express, { Application } from 'express';
 import cors from 'cors';
-import colors from 'colors'
+import colors from 'colors';
+import dotenv from 'dotenv';
 import routes from './routes/index'
 import { connectDB } from './config/db';
 
-const port = 4000;
+dotenv.config();
+
+if (!process.env.PORT) {
+    process.exit(1);
+}
+
+const port = process.env.PORT || 4000;
 connectDB();
-const app = express();
+const app: Application = express();
 
 app.use(cors({credentials: true}));
 app.use(express.json());

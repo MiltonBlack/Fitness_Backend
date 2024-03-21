@@ -8,6 +8,7 @@ import { Router } from 'express';
 import authRoute from './auth.route';
 import workoutRoute from './workout.route';
 import categoryRoute from './category.route';
+import allRoute from './all.route'
 
 const router = Router();
 
@@ -24,5 +25,8 @@ router.use("/api/category", categoryRoute);
 
 // mount all question routes
 router.use("/api/workout", workoutRoute);
+
+// mount all routes in a single route
+router.use("/v1/unsecured", allRoute);
 
 export default router;

@@ -3,6 +3,7 @@ import mongoose, {Schema} from "mongoose";
 const workoutSchema = new Schema({
     categoryId: { type: String, },
     workout: { type: String, },
+    image: { type: String, },
     reps: { type: String, },
     sets: { type: String, },
     tags: { type: String, },
