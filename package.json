@@ -14,7 +14,8 @@
     "mongoose": "^8.2.1"
   },
   "scripts": {
-    "start": "npm run build && node ./dist/server.js",
+    "start": "node ./dist/server.js",
+    "run": "npm run build && node ./dist/server.js",
     "dev": "nodemon ./server/server.ts",
     "build": "tsc -p .",
     "server": "nodemon server.js"
